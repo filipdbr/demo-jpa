@@ -6,7 +6,7 @@
   <persistence-unit name="demo" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <properties>
-      <property name="jakarta.persistence.jdbc.url" value="jdbc:mariadb://127.0.0.1:3308/compta"/>
+      <property name="jakarta.persistence.jdbc.url" value="jdbc:mariadb://127.0.0.1:3308/bibliotheque"/>
       <property name="jakarta.persistence.jdbc.user" value="root"/>
       <property name="jakarta.persistence.jdbc.password" value=""/>
 
