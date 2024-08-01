@@ -16,12 +16,14 @@
 
     <dependencies>
 
+        <!-- Dépendance pour le pilote JDBC de MariaDB -->
         <dependency>
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>
             <version>3.4.1</version>
         </dependency>
 
+        <!-- Dépendance pour Hibernate Core -->
         <!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core -->
         <dependency>
             <groupId>org.hibernate.orm</groupId>

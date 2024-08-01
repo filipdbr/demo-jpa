@@ -2,40 +2,54 @@ package entites;
 
 import jakarta.persistence.*;
 
-// L'annotation @Entity spécifie que la classe doit être traitée comme une table
-// L'annotation @Table indique le nom de la table dans la base de données.
+import java.util.HashSet;
+import java.util.Set;
+
+// L'annotation @Entity indique que cette classe est une entité JPA
+// L'annotation @Table spécifie le nom de la table associée dans la base de données
 @Entity
-@Table (name = "livre")
+@Table(name = "livre")
 public class Livre {
 
-    // L'annotation @Id spécifie la clé primaire d'une entité.
-    // GenerationType.IDENTITY indique auto-increment dans la base de données.
+    // Attributs
+
+    // L'annotation @Id spécifie la clé primaire de cette entité
+    // GenerationType.IDENTITY indique que la valeur est générée automatiquement par la base de données (auto-increment)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private int id;
 
-    // Déclaration des autres colonnes
-    @Column (name = "TITRE", length = 255)
+    // Déclaration des autres colonnes de la table
+    @Column(name = "TITRE", length = 255)
     private String title;
-
-
-    @Column (name = "AUTEUR", length = 50)
+    @Column(name = "AUTEUR", length = 50)
     private String author;
 
-    // Le constructeur par défaut (sans paramethes) requis par JPA pour créer une instance d'entité.
-    // Il est souvent utilisé lors de la récupération de données de la base de données.
+    // Relation ManyToMany avec l'entité Emprunt
+    @ManyToMany(mappedBy = "livres")
+    Set<Emprunt> emprunts;
+
+    // bloc d'initialisation d'instance
+    {
+        emprunts = new HashSet<>();
+    }
+
+    // Constructeurs
+
+    // Le constructeur vide par défaut est requis par JPA pour créer une instance de l'entité
     public Livre() {
     }
 
-    // Constructeur supplémentaire avec des paramètres pour initialiser l'entité avec des valeurs données.
-    // Cela peut être utile lors de la création de nouvelles instances de l'entité à enregistrer dans la base de données.
+    // Constructeur supplémentaire avec des paramètres pour initialiser l'entité avec des valeurs fournies
     public Livre(int id, String title, String author) {
         this.id = id;
         this.title = title;
         this.author = author;
     }
 
-    // getters
+    // Méthodes
+
     public int getId() {
         return id;
     }
@@ -48,7 +62,8 @@ public class Livre {
         return author;
     }
 
-    // setters
+    // Setters
+
     public void setId(int id) {
         this.id = id;
     }
