@@ -6,6 +6,9 @@ import entites.Livre;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
+
+import java.util.List;
 
 public class ConnexionJpa {
 
@@ -16,6 +19,9 @@ public class ConnexionJpa {
         EntityManager em = null;
 
         try {
+
+            // Variable contenant une requête SQL
+            final String SEARCH_QUERY = "SELECT e FROM Emprunt e WHERE e.client.id = :clientId";
 
             // Créer une instance d'EntityManagerFactory
             emf = Persistence.createEntityManagerFactory("demo");
@@ -37,12 +43,17 @@ public class ConnexionJpa {
                 System.out.println("Recherche terminée avec succès : " + client1.toString());
             }
 
-            // Rechercher un livre avec l'identifiant 3
-            Livre livre1 = em.find(Livre.class, 3);
-            if (livre1 != null) {
-                // Afficher le livre associé (le titre et l'autheur)
-                System.out.println("Recherche terminée avec succès : " + livre1.getTitle() + ", " + livre1.getAuthor());
+            // Trouver tous les emprunts pour ce client
+            TypedQuery<Emprunt> query = em.createQuery(SEARCH_QUERY, Emprunt.class);
+            query.setParameter("clientId", client1.getId());
+            List<Emprunt> emprunts = query.getResultList();
+
+            // Affichage des resultats
+            System.out.println("Les emprunts de " + client1.getNom() + " " + client1.getPrenom() + ":");
+            for (Emprunt emprunt : emprunts) {
+                System.out.println(emprunt);
             }
+
 
         } finally {
             // Fermer l'EntityManager et l'EntityManagerFactory s'ils ont été ouverts
