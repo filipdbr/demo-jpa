@@ -32,7 +32,13 @@ public class Client {
     @OneToMany(mappedBy = "client")
     private Set<Emprunt> emprunts;
 
+
     // Constructeurs
+
+    // Bloc d'initialisation pour initialiser la collection emprunts
+    {
+        emprunts = new HashSet<>();
+    }
 
     // Constructeur par défaut (sans paramètres) requis par JPA pour créer une instance de l'entité.
     public Client() {

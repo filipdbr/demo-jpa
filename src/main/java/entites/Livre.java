@@ -30,12 +30,12 @@ public class Livre {
     @ManyToMany(mappedBy = "livres")
     Set<Emprunt> emprunts;
 
+    // Constructeurs
+
     // bloc d'initialisation d'instance
     {
         emprunts = new HashSet<>();
     }
-
-    // Constructeurs
 
     // Le constructeur vide par défaut est requis par JPA pour créer une instance de l'entité
     public Livre() {

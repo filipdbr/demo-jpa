@@ -22,10 +22,10 @@ public class Emprunt {
 
     // Déclaration des autres colonnes de la table
     @Column(name = "DATE_DEBUT")
-    private Timestamp date_debut;
+    private Timestamp dateDebut;
 
     @Column(name = "DATE_FIN")
-    private Timestamp date_fin;
+    private Timestamp dateFin;
 
     @Column(name = "DELAI", length = 10)
     private int delai;
@@ -44,24 +44,24 @@ public class Emprunt {
     )
     private Set<Livre> livres;
 
+    // Constructeurs
+
     // Bloc d'initialisation pour initialiser la collection livres
     {
         livres = new HashSet<>();
     }
-
-    // Constructeurs
 
     // Le constructeur par défaut (sans paramètres) est requis par JPA pour créer une instance de l'entité.
     public Emprunt() {
     }
 
     // Constructeur supplémentaire avec des paramètres pour initialiser l'entité avec des valeurs fournies.
-    public Emprunt(Timestamp date_debut, Timestamp date_fin) {
-        this.date_debut = date_debut;
-        this.date_fin = date_fin;
+    public Emprunt(Timestamp dateDebut, Timestamp dateFin) {
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
 
         // Calcul du délai en jours
-        long millisecondsDiff = date_fin.getTime() - date_debut.getTime();
+        long millisecondsDiff = dateFin.getTime() - dateDebut.getTime();
         this.delai = (int) TimeUnit.MILLISECONDS.toDays(millisecondsDiff);
     }
 
@@ -76,19 +76,19 @@ public class Emprunt {
     }
 
     public Timestamp getDate_debut() {
-        return date_debut;
+        return dateDebut;
     }
 
     public void setDate_debut(Timestamp date_debut) {
-        this.date_debut = date_debut;
+        this.dateDebut = date_debut;
     }
 
     public Timestamp getDate_fin() {
-        return date_fin;
+        return dateFin;
     }
 
     public void setDate_fin(Timestamp date_fin) {
-        this.date_fin = date_fin;
+        this.dateFin = date_fin;
     }
 
     public int getDelai() {
@@ -120,8 +120,8 @@ public class Emprunt {
     public String toString() {
         return "Emprunt{" +
                 "id=" + id +
-                ", date_debut='" + date_debut + '\'' +
-                ", date_fin='" + date_fin + '\'' +
+                ", date_debut='" + dateDebut + '\'' +
+                ", date_fin='" + dateFin + '\'' +
                 ", delai=" + delai +
                 '}';
     }

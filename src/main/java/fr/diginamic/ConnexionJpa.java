@@ -43,12 +43,12 @@ public class ConnexionJpa {
                 System.out.println("Recherche terminée avec succès : " + client1.toString());
             }
 
-            // Trouver tous les emprunts pour ce client
+            // Trouver tous les emprunts pour ce client en utilisant JPQL (Typed Query, type: Emprunt)
             TypedQuery<Emprunt> query = em.createQuery(SEARCH_QUERY, Emprunt.class);
             query.setParameter("clientId", client1.getId());
             List<Emprunt> emprunts = query.getResultList();
 
-            // Affichage des resultats
+            // Affichage des resultats (boucle for each)
             System.out.println("Les emprunts de " + client1.getNom() + " " + client1.getPrenom() + ":");
             for (Emprunt emprunt : emprunts) {
                 System.out.println(emprunt);
