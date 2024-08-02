@@ -2,6 +2,7 @@ package fr.diginamic;
 
 import entites.Client;
 import entites.Emprunt;
+import entites.Livre;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -26,14 +27,21 @@ public class ConnexionJpa {
             Emprunt emprunt1 = em.find(Emprunt.class, 2);
             if (emprunt1 != null) {
                 // Afficher les livres associés à l'emprunt
-                System.out.println(emprunt1.getLivres());
+                System.out.println("Recherche terminée avec succès : " + emprunt1.getLivres());
             }
 
             // Rechercher un client avec l'identifiant 1
             Client client1 = em.find(Client.class, 1);
-            if (emprunt1 != null) {
-                // Afficher un client associe
-                System.out.println(client1.toString());
+            if (client1 != null) {
+                // Afficher le client associé
+                System.out.println("Recherche terminée avec succès : " + client1.toString());
+            }
+
+            // Rechercher un livre avec l'identifiant 3
+            Livre livre1 = em.find(Livre.class, 3);
+            if (livre1 != null) {
+                // Afficher le livre associé (le titre et l'autheur)
+                System.out.println("Recherche terminée avec succès : " + livre1.getTitle() + ", " + livre1.getAuthor());
             }
 
         } finally {
