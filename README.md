@@ -42,5 +42,5 @@ Le projet est conforme aux spécifications des TP et suit les meilleures pratiqu
 
 <h2>Auteur</h2>
 
-Filip Dabrowski
-L'auteur a développé l'entier du projet, y compris la mise en place de la base de données, les entités, et les opérations CRUD, tout en suivant les directives et les objectifs pédagogiques des TP.
+<p>Filip Dabrowski</p>
+<p>L'auteur a développé l'entier du projet, y compris la mise en place de la base de données, les entités, et les opérations CRUD, tout en suivant les directives et les objectifs pédagogiques des TP.</p>
